@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:job_seeker/Constants.dart';
-import 'package:job_seeker/feature/shared/buttons.dart';
-import 'package:job_seeker/feature/shared/form_inputs.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../../../Constants.dart';
+import '../../shared/buttons.dart';
+import '../../shared/form_inputs.dart';
+
+class SignupPage extends StatelessWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBox(height: 30),
                 SvgPicture.asset(
@@ -26,33 +28,45 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 60),
                 Text(
-                  'Sign In',
+                  'Sign Up',
                   style: Theme.of(context).textTheme.headline1,
                 ),
                 const SizedBox(height: 40),
-                NFQTextFormField(
-                  'Username or Email',
-                  inputType: TextInputType.emailAddress,
-                  inputAction: TextInputAction.next,
-                ),
-                const SizedBox(height: 10),
-                NFQTextFormField(
-                  'Password',
-                  inputType: TextInputType.visiblePassword,
-                  obscureText: true,
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  width: double.infinity,
-                  height: 55,
-                  child: const NFQPrimaryButton('Sign In'),
+                Form(
+                  child: Column(
+                    children: [
+                      NFQTextFormField(
+                        'Full name',
+                        inputType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                      ),
+                      const SizedBox(height: 10),
+                      NFQTextFormField(
+                        'Email',
+                        inputType: TextInputType.emailAddress,
+                        inputAction: TextInputAction.next,
+                      ),
+                      const SizedBox(height: 10),
+                      NFQTextFormField(
+                        'Password',
+                        inputType: TextInputType.visiblePassword,
+                        obscureText: true,
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        height: 55,
+                        child: const NFQPrimaryButton('Join Now'),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'New user?',
+                      'Already a user?',
                       style: TextStyle(
                         color: ThemeColor().darkGrey,
                       ),
@@ -60,10 +74,10 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(width: 10),
                     InkWell(
                       onTap: () {
-                        Get.toNamed('/entry/signup');
+                        Get.back();
                       },
                       child: Text(
-                        'Create an account',
+                        'Login now',
                         style: TextStyle(
                           color: ThemeColor().yellow,
                         ),

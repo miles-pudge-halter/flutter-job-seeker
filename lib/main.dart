@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/login/view/login_entry_page.dart';
 import 'package:job_seeker/feature/login/view/login_page.dart';
+import 'package:job_seeker/feature/login/view/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/entry', page: () => LoginEntryPage()),
         GetPage(name: '/entry/login', page: () => LoginPage()),
+        GetPage(name: '/entry/signup', page: () => SignupPage()),
       ],
       initialRoute: '/entry',
     );
