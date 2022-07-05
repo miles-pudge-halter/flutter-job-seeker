@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_seeker/feature/dashboard/controller/dashboard_controller.dart';
-import 'package:job_seeker/feature/dashboard/tabs/home_tab.dart';
+import 'package:job_seeker/feature/dashboard/tabs/home/view/home_tab.dart';
 import 'package:job_seeker/feature/dashboard/tabs/job_tab.dart';
 import 'package:job_seeker/feature/dashboard/tabs/profile_tab.dart';
 

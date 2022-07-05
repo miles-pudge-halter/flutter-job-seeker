@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:job_seeker/data/models/job_model.dart';
 
 import '../../Constants.dart';
 
 class JobCard extends StatelessWidget {
-  const JobCard({Key? key}) : super(key: key);
+  final JobModel job;
+
+  const JobCard({required this.job, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class JobCard extends StatelessWidget {
             children: [
               Row(children: [
                 Image.network(
-                  'https://myplaceloungechiangmai.com/wp-content/uploads/2015/02/google-logo-icon-PNG-Transparent-Background.png',
+                  job.logo ?? '',
                   width: 50,
                   height: 50,
                   fit: BoxFit.cover,
@@ -33,16 +36,16 @@ class JobCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Google',
+                      job.companyName,
                       style: Theme.of(context).textTheme.bodyText2?.copyWith(
                             color: Colors.grey.shade500,
                             fontSize: 12,
                           ),
                     ),
                     const SizedBox(height: 4),
-                    const Text(
-                      'Android Engineer',
-                      style: TextStyle(
+                    Text(
+                      job.role,
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),

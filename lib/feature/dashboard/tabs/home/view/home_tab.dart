@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
+import 'package:job_seeker/feature/dashboard/tabs/home/controller/home_controller.dart';
 import 'package:job_seeker/feature/shared/job_card.dart';
 
 class HomeTab extends StatelessWidget {
@@ -7,6 +9,7 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.find<HomeController>();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -16,14 +19,14 @@ class HomeTab extends StatelessWidget {
           _buildSearchBox(),
           Padding(
             padding: const EdgeInsets.all(16),
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                JobCard(),
-                JobCard(),
-                JobCard(),
-              ],
-            ),
+            child: Obx(() {
+              return ListView(
+                shrinkWrap: true,
+                children: controller.jobs.value
+                    .map((job) => JobCard(job: job))
+                    .toList(),
+              );
+            }),
           ),
         ],
       ),
