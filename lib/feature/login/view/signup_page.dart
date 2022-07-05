@@ -56,7 +56,10 @@ class SignupPage extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         height: 55,
-                        child: const NFQPrimaryButton('Join Now'),
+                        child: NFQPrimaryButton(
+                          'Join Now',
+                          () {},
+                        ),
                       ),
                     ],
                   ),
