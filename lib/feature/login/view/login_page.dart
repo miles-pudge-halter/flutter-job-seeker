@@ -45,7 +45,12 @@ class LoginPage extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   height: 55,
-                  child: const NFQPrimaryButton('Sign In'),
+                  child: NFQPrimaryButton(
+                    'Sign In',
+                    () {
+                      Get.toNamed('/dashboard');
+                    },
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(

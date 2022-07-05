@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:job_seeker/Constants.dart';
+import 'package:job_seeker/feature/dashboard/binding/dashboard_binding.dart';
+import 'package:job_seeker/feature/dashboard/view/dashboard_page.dart';
 import 'package:job_seeker/feature/login/view/login_entry_page.dart';
 import 'package:job_seeker/feature/login/view/login_page.dart';
 import 'package:job_seeker/feature/login/view/signup_page.dart';
@@ -22,20 +24,31 @@ class MyApp extends StatelessWidget {
           primaryColor: ThemeColor().blue,
           fontFamily: GoogleFonts.lato().fontFamily,
           textTheme: TextTheme(
-              headline1: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-              bodyText2: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey.shade700,
-              ))),
+            headline1: const TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            headline2: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            bodyText2: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey.shade700,
+            ),
+          )),
       getPages: [
         GetPage(name: '/entry', page: () => LoginEntryPage()),
         GetPage(name: '/entry/login', page: () => LoginPage()),
         GetPage(name: '/entry/signup', page: () => SignupPage()),
+        GetPage(
+          name: '/dashboard',
+          page: () => DashboardPage(),
+          binding: DashboardBinding(),
+        ),
       ],
       initialRoute: '/entry',
     );
