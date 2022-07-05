@@ -24,16 +24,22 @@ class MyApp extends StatelessWidget {
           primaryColor: ThemeColor().blue,
           fontFamily: GoogleFonts.lato().fontFamily,
           textTheme: TextTheme(
-              headline1: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-              bodyText2: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey.shade700,
-              ))),
+            headline1: const TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            headline2: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            bodyText2: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey.shade700,
+            ),
+          )),
       getPages: [
         GetPage(name: '/entry', page: () => LoginEntryPage()),
         GetPage(name: '/entry/login', page: () => LoginPage()),
