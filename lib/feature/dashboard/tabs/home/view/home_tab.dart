@@ -21,6 +21,7 @@ class HomeTab extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Obx(() {
               return ListView(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: controller.jobs.value
                     .map((job) => JobCard(job: job))
