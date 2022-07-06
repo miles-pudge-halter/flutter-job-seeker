@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/dashboard/binding/dashboard_binding.dart';
 import 'package:job_seeker/feature/dashboard/view/dashboard_page.dart';
+import 'package:job_seeker/feature/job_details/view/job_details_page.dart';
 import 'package:job_seeker/feature/login/view/login_entry_page.dart';
 import 'package:job_seeker/feature/login/view/login_page.dart';
 import 'package:job_seeker/feature/login/view/signup_page.dart';
@@ -62,6 +63,10 @@ class MyApp extends StatelessWidget {
           page: () => DashboardPage(),
           binding: DashboardBinding(),
         ),
+        GetPage(
+          name: '/job/details',
+          page: () => JobDetailsPage(),
+        )
       ],
       initialRoute: '/entry',
     );
