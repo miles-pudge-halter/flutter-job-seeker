@@ -110,7 +110,9 @@ class JobDetailsPage extends StatelessWidget {
                       flex: 4,
                       child: Container(
                         height: 55,
-                        child: NFQPrimaryButton('Apply This Job', () {}),
+                        child: NFQPrimaryButton('Apply This Job', () {
+                          Get.toNamed('/job/apply');
+                        },),
                       ),
                     ),
                     SizedBox(width: 20),

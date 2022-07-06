@@ -6,15 +6,22 @@ class NFQTextField extends StatelessWidget {
   final TextInputType inputType;
   final bool obscureText;
   final TextInputAction inputAction;
+  final double height;
+  final int maxLines;
 
-  NFQTextField(this.hintText,
-      {this.inputType = TextInputType.text,
-      this.obscureText = false,
-      this.inputAction = TextInputAction.done});
+  NFQTextField(
+    this.hintText, {
+    this.inputType = TextInputType.text,
+    this.obscureText = false,
+    this.inputAction = TextInputAction.done,
+    this.height = 55,
+    this.maxLines = 1,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -23,6 +30,7 @@ class NFQTextField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: TextField(
+          maxLines: maxLines,
           obscureText: obscureText,
           keyboardType: inputType,
           textInputAction: inputAction,
