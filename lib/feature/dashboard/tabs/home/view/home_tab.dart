@@ -24,7 +24,14 @@ class HomeTab extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: controller.jobs.value
-                    .map((job) => JobCard(job: job))
+                    .map(
+                      (job) => JobCard(
+                        job: job,
+                        onClick: () {
+                          Get.toNamed('/job/details');
+                        },
+                      ),
+                    )
                     .toList(),
               );
             }),
