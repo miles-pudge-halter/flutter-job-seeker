@@ -4,7 +4,7 @@ import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/dashboard/controller/dashboard_controller.dart';
 import 'package:job_seeker/feature/dashboard/tabs/home/view/home_tab.dart';
 import 'package:job_seeker/feature/dashboard/tabs/job_tab.dart';
-import 'package:job_seeker/feature/dashboard/tabs/profile_tab.dart';
+import 'package:job_seeker/feature/dashboard/tabs/profile/profile_tab.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -45,11 +45,13 @@ class DashboardPage extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(30),
+              topLeft: Radius.circular(30),
+            ),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.shade600,
+                color: Colors.grey.shade500,
                 offset: Offset.fromDirection(1.5, 10),
                 blurRadius: 15,
                 spreadRadius: 4,
