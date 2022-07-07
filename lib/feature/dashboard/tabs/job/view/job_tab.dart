@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -20,6 +21,8 @@ class _JobTabState extends State<JobTab> {
   Timer? _debounce;
 
   String? address;
+
+  String? _mapStyle;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -72,18 +75,23 @@ class _JobTabState extends State<JobTab> {
     getLocation();
   }
 
+  void updateMapController(GoogleMapController controller) async {
+    _mapStyle = await rootBundle.loadString('assets/map_style.json');
+    controller.setMapStyle(_mapStyle);
+    _controller.complete(controller);
+  }
+
   void updateMapCenterPosition(CameraPosition position) async {
-    if(_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 1000),() async {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 1000), () async {
       mapCenter = position;
       List<Placemark> placemarks = await placemarkFromCoordinates(
           position.target.latitude, position.target.longitude);
       print(placemarks.toString());
-      if(placemarks.isNotEmpty) {
-        setState((){
+      if (placemarks.isNotEmpty) {
+        setState(() {
           address = '${placemarks.first.street} ${placemarks.first.country}';
         });
-
       }
     });
   }
@@ -110,12 +118,8 @@ class _JobTabState extends State<JobTab> {
                     mapType: MapType.normal,
                     buildingsEnabled: false,
                     zoomControlsEnabled: false,
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: true,
                     initialCameraPosition: currentLocation ?? _kGooglePlex,
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller.complete(controller);
-                    },
+                    onMapCreated: updateMapController,
                     onCameraMove: updateMapCenterPosition,
                   ),
                   Positioned(

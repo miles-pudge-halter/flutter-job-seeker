@@ -28,7 +28,10 @@ class DashboardPage extends StatelessWidget {
         body: Container(
           height: double.infinity,
           child: SafeArea(
-            child: tabs[controller.tabIndex],
+            child: IndexedStack(
+              index: controller.tabIndex,
+              children: tabs,
+            ),
           ),
         ),
       );
