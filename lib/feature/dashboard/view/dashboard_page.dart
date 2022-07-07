@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/dashboard/controller/dashboard_controller.dart';
 import 'package:job_seeker/feature/dashboard/tabs/home/view/home_tab.dart';
-import 'package:job_seeker/feature/dashboard/tabs/job/job_tab.dart';
+import 'package:job_seeker/feature/dashboard/tabs/job/view/job_tab.dart';
 import 'package:job_seeker/feature/dashboard/tabs/profile/profile_tab.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -11,6 +11,12 @@ class DashboardPage extends StatelessWidget {
 
   final Color selectedColor = ThemeColor().blue;
   final Color defColor = ThemeColor().lightGrey;
+
+  List<Widget> tabs = [
+    HomeTab(),
+    JobTab(),
+    ProfileTab(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +28,7 @@ class DashboardPage extends StatelessWidget {
         body: Container(
           height: double.infinity,
           child: SafeArea(
-            child: IndexedStack(
-              index: controller.tabIndex,
-              children: [
-                HomeTab(),
-                JobTab(),
-                ProfileTab(),
-              ],
-            ),
+            child: tabs[controller.tabIndex],
           ),
         ),
       );

@@ -38,6 +38,8 @@ dependencies:
   dotted_border: ^2.0.0+2
   file_picker: ^4.6.1
   google_maps_flutter: ^2.1.8
+  geolocator: ^9.0.0
+  geocoding: ^2.0.4
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
