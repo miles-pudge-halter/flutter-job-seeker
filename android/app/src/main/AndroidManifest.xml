@@ -4,6 +4,8 @@
         android:label="job_seeker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDAxhzG7Grf3J68qqL4iIi6mnIhDtE7b1M"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
