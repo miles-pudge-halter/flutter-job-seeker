@@ -41,6 +41,10 @@ dependencies:
   geolocator: ^9.0.0
   geocoding: ^2.0.4
   cupertino_icons: ^1.0.2
+  firebase_core: ^1.19.1
+  firebase_analytics: ^9.1.12
+  firebase_auth: ^3.4.1
+  firebase_database: ^9.0.18
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "248554494436",
+    "project_id": "flutter-job-seeker",
+    "storage_bucket": "flutter-job-seeker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248554494436:android:f731649210725b5b074ff1",
+        "android_client_info": {
+          "package_name": "asia.nfq.job_seeker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248554494436-39cqirh2f9i35jge6ljjp1kpojpmgk9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "asia.nfq.job_seeker",
+            "certificate_hash": "5fc6ee15b8cc03fda06ef43559925843cf8b7953"
+          }
+        },
+        {
+          "client_id": "248554494436-gv6j1uu7k2kdvjbkhnt40vuspdk15h74.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyGdeER5qEX_Cat5c5hlT99bN1BKW50Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248554494436-gv6j1uu7k2kdvjbkhnt40vuspdk15h74.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "248554494436-noc4jvhmfbi73b44dt9jo2ka9kesadcu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "asia.nfq.jobSeeker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
