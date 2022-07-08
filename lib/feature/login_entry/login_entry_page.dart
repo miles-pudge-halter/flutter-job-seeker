@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/login_entry/login_entry_controller.dart';
+import 'package:job_seeker/feature/login_entry/login_entry_state.dart';
 
 class LoginEntryPage extends StatelessWidget {
   LoginEntryController controller = Get.find();
@@ -40,8 +41,14 @@ class LoginEntryPage extends StatelessWidget {
               Get.toNamed('/entry/login');
             }),
             const SizedBox(height: 20),
-            _buildLoginButton('Login with Google', true, context, () {
-              controller.loginWithGoogle();
+            Obx(() {
+              return controller.state is LoginEntryLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : _buildLoginButton('Login with Google', true, context, () {
+                      controller.loginWithGoogle();
+                    });
             }),
             const SizedBox(height: 40),
           ],
@@ -50,8 +57,8 @@ class LoginEntryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginButton(
-      String title, bool isSocialLogin, BuildContext context, void Function() onClick) {
+  Widget _buildLoginButton(String title, bool isSocialLogin,
+      BuildContext context, void Function() onClick) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
