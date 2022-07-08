@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '248554494436',
     projectId: 'flutter-job-seeker',
     authDomain: 'flutter-job-seeker.firebaseapp.com',
+    databaseURL: 'https://flutter-job-seeker-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'flutter-job-seeker.appspot.com',
     measurementId: 'G-N22S7D2W6L',
   );
@@ -61,6 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:248554494436:android:f731649210725b5b074ff1',
     messagingSenderId: '248554494436',
     projectId: 'flutter-job-seeker',
+    databaseURL: 'https://flutter-job-seeker-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'flutter-job-seeker.appspot.com',
   );
 
@@ -69,6 +71,7 @@ class DefaultFirebaseOptions {
     appId: '1:248554494436:ios:d759085b4cfbc7bf074ff1',
     messagingSenderId: '248554494436',
     projectId: 'flutter-job-seeker',
+    databaseURL: 'https://flutter-job-seeker-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'flutter-job-seeker.appspot.com',
     androidClientId: '248554494436-39cqirh2f9i35jge6ljjp1kpojpmgk9o.apps.googleusercontent.com',
     iosClientId: '248554494436-noc4jvhmfbi73b44dt9jo2ka9kesadcu.apps.googleusercontent.com',

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "248554494436",
+    "firebase_url": "https://flutter-job-seeker-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "flutter-job-seeker",
     "storage_bucket": "flutter-job-seeker.appspot.com"
   },

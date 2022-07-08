@@ -53,11 +53,17 @@ class NFQTextFormField extends StatelessWidget {
   final TextInputType inputType;
   final bool obscureText;
   final TextInputAction inputAction;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
-  NFQTextFormField(this.hintText,
-      {this.inputType = TextInputType.text,
-      this.obscureText = false,
-      this.inputAction = TextInputAction.done});
+  NFQTextFormField(
+    this.hintText, {
+    this.inputType = TextInputType.text,
+    this.obscureText = false,
+    this.inputAction = TextInputAction.done,
+    this.controller,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +79,8 @@ class NFQTextFormField extends StatelessWidget {
           obscureText: obscureText,
           keyboardType: inputType,
           textInputAction: inputAction,
+          controller: controller,
+          validator: validator,
           decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hintText,

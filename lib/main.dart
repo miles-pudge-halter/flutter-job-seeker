@@ -7,10 +7,12 @@ import 'package:job_seeker/feature/apply_job/view/apply_job_page.dart';
 import 'package:job_seeker/feature/dashboard/binding/dashboard_binding.dart';
 import 'package:job_seeker/feature/dashboard/view/dashboard_page.dart';
 import 'package:job_seeker/feature/job_details/view/job_details_page.dart';
-import 'package:job_seeker/feature/login/view/login_entry_page.dart';
-import 'package:job_seeker/feature/login/view/login_page.dart';
-import 'package:job_seeker/feature/login/view/signup_page.dart';
+import 'package:job_seeker/feature/login/login_binding.dart';
+import 'package:job_seeker/feature/login/login_entry_page.dart';
+import 'package:job_seeker/feature/signup/signup_page.dart';
 
+import 'feature/login/login_page.dart';
+import 'feature/signup/signup_binding.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -63,9 +65,21 @@ class MyApp extends StatelessWidget {
                 color: ThemeColor().black,
               ))),
       getPages: [
-        GetPage(name: '/entry', page: () => LoginEntryPage()),
-        GetPage(name: '/entry/login', page: () => LoginPage()),
-        GetPage(name: '/entry/signup', page: () => SignupPage()),
+        GetPage(
+          name: '/entry',
+          page: () => LoginEntryPage(),
+          binding: LoginBinding(),
+        ),
+        GetPage(
+          name: '/entry/login',
+          page: () => LoginPage(),
+          binding: LoginBinding(),
+        ),
+        GetPage(
+          name: '/entry/signup',
+          page: () => SignupPage(),
+          binding: SignupBinding(),
+        ),
         GetPage(
           name: '/dashboard',
           page: () => DashboardPage(),
