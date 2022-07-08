@@ -83,53 +83,56 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
 
   onSignIn() {
-    controller.login(_emailController.text, _passwordController.text);
+    if (_key.currentState!.validate()) {
+      controller.login(_emailController.text, _passwordController.text);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+        key: _key,
         child: Column(
-      children: [
-        NFQTextFormField(
-          'Email',
-          inputType: TextInputType.emailAddress,
-          inputAction: TextInputAction.next,
-          controller: _emailController,
-          validator: (text) {
-            if (text == null || text.isEmpty) {
-              return 'Email is required';
-            }
-            return null;
-          },
-        ),
-        const SizedBox(height: 10),
-        NFQTextFormField(
-          'Password',
-          inputType: TextInputType.visiblePassword,
-          obscureText: true,
-          controller: _passwordController,
-          validator: (text) {
-            if (text == null || text.isEmpty) {
-              return 'Password is required';
-            }
-            return null;
-          },
-        ),
-        const SizedBox(height: 20),
-        Obx(() {
-          return controller.state is LoginLoading
-              ? CircularProgressIndicator()
-              : Container(
-                  width: double.infinity,
-                  height: 55,
-                  child: NFQPrimaryButton(
-                    'Sign In',
-                    onSignIn,
-                  ),
-                );
-        }),
-      ],
-    ));
+          children: [
+            NFQTextFormField(
+              'Email',
+              inputType: TextInputType.emailAddress,
+              inputAction: TextInputAction.next,
+              controller: _emailController,
+              validator: (text) {
+                if (text == null || text.isEmpty) {
+                  return 'Email is required';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 10),
+            NFQTextFormField(
+              'Password',
+              inputType: TextInputType.visiblePassword,
+              obscureText: true,
+              controller: _passwordController,
+              validator: (text) {
+                if (text == null || text.isEmpty) {
+                  return 'Password is required';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 20),
+            Obx(() {
+              return controller.state is LoginLoading
+                  ? CircularProgressIndicator()
+                  : Container(
+                      width: double.infinity,
+                      height: 55,
+                      child: NFQPrimaryButton(
+                        'Sign In',
+                        onSignIn,
+                      ),
+                    );
+            }),
+          ],
+        ));
   }
 }
