@@ -10,10 +10,12 @@ import 'package:job_seeker/feature/job_details/view/job_details_page.dart';
 import 'package:job_seeker/feature/login/login_binding.dart';
 import 'package:job_seeker/feature/login_entry/login_entry_page.dart';
 import 'package:job_seeker/feature/signup/signup_page.dart';
+import 'package:job_seeker/feature/splash/splash_screen.dart';
 
 import 'feature/login/login_page.dart';
 import 'feature/login_entry/login_entry_binding.dart';
 import 'feature/signup/signup_binding.dart';
+import 'feature/splash/splash_binding.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -67,6 +69,11 @@ class MyApp extends StatelessWidget {
               ))),
       getPages: [
         GetPage(
+          name: '/splash',
+          page: () => SplashScreen(),
+          binding: SplashBinding(),
+        ),
+        GetPage(
           name: '/entry',
           page: () => LoginEntryPage(),
           binding: LoginEntryBinding(),
@@ -95,7 +102,7 @@ class MyApp extends StatelessWidget {
           page: () => ApplyJobPage(),
         )
       ],
-      initialRoute: '/entry',
+      initialRoute: '/splash',
     );
   }
 }
