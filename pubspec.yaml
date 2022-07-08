@@ -45,6 +45,7 @@ dependencies:
   firebase_analytics: ^9.1.12
   firebase_auth: ^3.4.1
   firebase_database: ^9.0.18
+  google_sign_in: ^5.4.0
 
 dev_dependencies:
   flutter_test:

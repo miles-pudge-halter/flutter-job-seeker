@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
+import 'package:job_seeker/feature/login_entry/login_entry_controller.dart';
 
 class LoginEntryPage extends StatelessWidget {
-  const LoginEntryPage({Key? key}) : super(key: key);
+  LoginEntryController controller = Get.find();
+
+  LoginEntryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,9 @@ class LoginEntryPage extends StatelessWidget {
               Get.toNamed('/entry/login');
             }),
             const SizedBox(height: 20),
-            _buildLoginButton('Login with Google', true, context, () {}),
+            _buildLoginButton('Login with Google', true, context, () {
+              controller.loginWithGoogle();
+            }),
             const SizedBox(height: 40),
           ],
         ),
