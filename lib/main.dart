@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,11 +7,22 @@ import 'package:job_seeker/feature/apply_job/view/apply_job_page.dart';
 import 'package:job_seeker/feature/dashboard/binding/dashboard_binding.dart';
 import 'package:job_seeker/feature/dashboard/view/dashboard_page.dart';
 import 'package:job_seeker/feature/job_details/view/job_details_page.dart';
-import 'package:job_seeker/feature/login/view/login_entry_page.dart';
-import 'package:job_seeker/feature/login/view/login_page.dart';
-import 'package:job_seeker/feature/login/view/signup_page.dart';
+import 'package:job_seeker/feature/login/login_binding.dart';
+import 'package:job_seeker/feature/login_entry/login_entry_page.dart';
+import 'package:job_seeker/feature/signup/signup_page.dart';
+import 'package:job_seeker/feature/splash/splash_screen.dart';
 
-void main() {
+import 'feature/login/login_page.dart';
+import 'feature/login_entry/login_entry_binding.dart';
+import 'feature/signup/signup_binding.dart';
+import 'feature/splash/splash_binding.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -56,9 +68,26 @@ class MyApp extends StatelessWidget {
                 color: ThemeColor().black,
               ))),
       getPages: [
-        GetPage(name: '/entry', page: () => LoginEntryPage()),
-        GetPage(name: '/entry/login', page: () => LoginPage()),
-        GetPage(name: '/entry/signup', page: () => SignupPage()),
+        GetPage(
+          name: '/splash',
+          page: () => SplashScreen(),
+          binding: SplashBinding(),
+        ),
+        GetPage(
+          name: '/entry',
+          page: () => LoginEntryPage(),
+          binding: LoginEntryBinding(),
+        ),
+        GetPage(
+          name: '/entry/login',
+          page: () => LoginPage(),
+          binding: LoginBinding(),
+        ),
+        GetPage(
+          name: '/entry/signup',
+          page: () => SignupPage(),
+          binding: SignupBinding(),
+        ),
         GetPage(
           name: '/dashboard',
           page: () => DashboardPage(),
@@ -73,7 +102,7 @@ class MyApp extends StatelessWidget {
           page: () => ApplyJobPage(),
         )
       ],
-      initialRoute: '/entry',
+      initialRoute: '/splash',
     );
   }
 }

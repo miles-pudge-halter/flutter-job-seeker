@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:job_seeker/Constants.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -126,6 +129,12 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
+  signOut() async {
+    await GoogleSignIn().signOut();
+    await FirebaseAuth.instance.signOut();
+    Get.offAllNamed('/entry');
+  }
+
   _buildMenuItems(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,6 +154,8 @@ class ProfileTab extends StatelessWidget {
         _buildMenuItem('Membership', () {}),
         const SizedBox(height: 10),
         _buildMenuItem('Payment', () {}),
+        const SizedBox(height: 10),
+        _buildMenuItem('Sign Out', signOut),
       ],
     );
   }
