@@ -96,6 +96,10 @@ class HomeTab extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: TextField(
+            textInputAction: TextInputAction.search,
+            onSubmitted: (keyword) {
+              Get.toNamed('/job/list', arguments: {'keyword': keyword});
+            },
             decoration: InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: const Icon(
