@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:job_seeker/Constants.dart';
 
@@ -90,7 +91,7 @@ class _JobTabState extends State<JobTab> {
       print(placemarks.toString());
       if (placemarks.isNotEmpty) {
         setState(() {
-          address = '${placemarks.first.street} ${placemarks.first.country}';
+          address = placemarks.first.country;
         });
       }
     });
@@ -146,7 +147,9 @@ class _JobTabState extends State<JobTab> {
               Container(
                 height: 60,
                 width: double.infinity,
-                child: NFQPrimaryButton('Search by location', () {}),
+                child: NFQPrimaryButton('Search by location', () {
+                  Get.toNamed('/job/list', arguments: {'country': address, 'keyword': null});
+                }),
               ),
             ],
           )
