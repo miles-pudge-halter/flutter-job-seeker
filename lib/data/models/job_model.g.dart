@@ -36,3 +36,21 @@ Map<String, dynamic> _$JobModelToJson(JobModel instance) => <String, dynamic>{
       'keywords': instance.keywords,
       'source': instance.source,
     };
+
+JobListResponse _$JobListResponseFromJson(Map<String, dynamic> json) =>
+    JobListResponse(
+      count: json['count'] as int,
+      results: (json['results'] as List<dynamic>)
+          .map((e) => JobModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      next: json['next'] as String?,
+      previous: json['previous'] as String?,
+    );
+
+Map<String, dynamic> _$JobListResponseToJson(JobListResponse instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'next': instance.next,
+      'previous': instance.previous,
+      'results': instance.results,
+    };
