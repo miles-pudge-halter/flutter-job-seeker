@@ -7,7 +7,8 @@ class JobCard extends StatelessWidget {
   final JobModel job;
   final void Function() onClick;
 
-  const JobCard({required this.job, required this.onClick, Key? key}) : super(key: key);
+  const JobCard({required this.job, required this.onClick, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class JobCard extends StatelessWidget {
         onTap: onClick,
         child: Container(
           decoration: BoxDecoration(
-            color: ThemeColor().lightGrey,
+            color: Colors.grey.shade200,
             shape: BoxShape.rectangle,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
@@ -27,34 +28,51 @@ class JobCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(children: [
-                  Image.network(
-                    job.logo ?? '',
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        job.companyName,
-                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                              color: Colors.grey.shade500,
-                              fontSize: 12,
+                Flexible(
+                  child: Row(children: [
+                    FadeInImage.assetNetwork(
+                      placeholder: 'assets/job_logo.png',
+                      image: job.logo ?? '',
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.contain,
+                      imageErrorBuilder: (BuildContext context,
+                          Object exception, StackTrace? stackTrace) {
+                        return Image.asset(
+                          'assets/job_logo.png',
+                          width: 50,
+                          height: 50,
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            job.companyName,
+                            style:
+                                Theme.of(context).textTheme.bodyText2?.copyWith(
+                                      color: Colors.grey.shade500,
+                                      fontSize: 12,
+                                    ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            job.role,
+                            style: const TextStyle(
+                              fontSize: 16,
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        job.role,
-                        style: const TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ]),
+                    ),
+                  ]),
+                ),
+                SizedBox(width: 10),
                 Container(
                   width: 40,
                   height: 40,

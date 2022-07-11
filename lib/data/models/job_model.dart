@@ -38,10 +38,33 @@ class JobModel extends Equatable {
   });
 
   @override
-  List<Object> get props => ['id'];
+  List<Object> get props => [id];
 
   factory JobModel.fromJson(Map<String, dynamic> json) =>
-      _$JobModelFromJson(json); 
+      _$JobModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$JobModelToJson(this);
+}
+
+@JsonSerializable()
+class JobListResponse extends Equatable {
+  final int count;
+  final String? next;
+  final String? previous;
+  final List<JobModel> results;
+
+  JobListResponse({
+    required this.count,
+    required this.results,
+    this.next,
+    this.previous,
+  });
+
+  @override
+  List<Object> get props => [];
+
+  factory JobListResponse.fromJson(Map<String, dynamic> json) =>
+      _$JobListResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$JobListResponseToJson(this);
 }

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/dashboard/controller/dashboard_controller.dart';
-import 'package:job_seeker/feature/dashboard/tabs/home/view/home_tab.dart';
 import 'package:job_seeker/feature/dashboard/tabs/job/view/job_tab.dart';
 import 'package:job_seeker/feature/dashboard/tabs/profile/profile_tab.dart';
+
+import '../tabs/home/home_tab.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);

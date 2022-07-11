@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
-import 'package:job_seeker/feature/dashboard/tabs/home/controller/home_controller.dart';
+import 'package:job_seeker/feature/dashboard/tabs/home/home_controller.dart';
 import 'package:job_seeker/feature/shared/job_card.dart';
 
 class HomeTab extends StatelessWidget {
@@ -77,7 +77,7 @@ class HomeTab extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(20)),
-          color: ThemeColor().lightGrey,
+          color: Colors.grey.shade200,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),
