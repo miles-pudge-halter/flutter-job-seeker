@@ -4,6 +4,8 @@ import 'package:job_seeker/Constants.dart';
 import 'package:job_seeker/feature/dashboard/tabs/home/home_controller.dart';
 import 'package:job_seeker/feature/shared/job_card.dart';
 
+import 'home_state.dart';
+
 class HomeTab extends StatelessWidget {
   const HomeTab({Key? key}) : super(key: key);
 
@@ -20,20 +22,32 @@ class HomeTab extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Obx(() {
-              return ListView(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: controller.jobs.value
-                    .map(
-                      (job) => JobCard(
-                        job: job,
-                        onClick: () {
-                          Get.toNamed('/job/details');
-                        },
-                      ),
-                    )
-                    .toList(),
-              );
+              if (controller.state is HomeSuccess) {
+                return ListView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: (controller.state as HomeSuccess)
+                      .jobs
+                      .map(
+                        (job) => JobCard(
+                          job: job,
+                          onClick: () {
+                            Get.toNamed('/job/details');
+                          },
+                        ),
+                      )
+                      .toList(),
+                );
+              }
+              else if(controller.state is HomeLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              else if(controller.state is HomeEmpty) {
+                return Center(child: Text('No jobs found'));
+              }
+              else {
+                return Center(child: Text((controller.state as HomeFailure).error));
+              }
             }),
           ),
         ],
@@ -82,6 +96,10 @@ class HomeTab extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: TextField(
+            textInputAction: TextInputAction.search,
+            onSubmitted: (keyword) {
+              Get.toNamed('/job/list', arguments: {'keyword': keyword});
+            },
             decoration: InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: const Icon(

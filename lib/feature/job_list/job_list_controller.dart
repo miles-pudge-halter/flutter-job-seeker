@@ -22,7 +22,7 @@ class JobListController extends GetxController {
   void getJobs({String? keyword, String? country}) async {
     _stateStream.value = JobListLoading();
     try {
-      var response = await datasource.getJobs(country: country);
+      var response = await datasource.getJobs(keyword: keyword, country: country);
       if(response.results.isEmpty) {
         _stateStream.value = JobListEmpty();
       } else {
