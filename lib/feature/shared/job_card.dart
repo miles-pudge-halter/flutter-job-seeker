@@ -30,18 +30,17 @@ class JobCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Row(children: [
-                    FadeInImage.assetNetwork(
-                      placeholder: 'assets/job_logo.png',
-                      image: job.logo ?? '',
+                    Image.network(
+                      job.logo ?? '',
                       width: 50,
                       height: 50,
                       fit: BoxFit.contain,
-                      imageErrorBuilder: (BuildContext context,
+                      errorBuilder: (BuildContext context,
                           Object exception, StackTrace? stackTrace) {
-                        return Image.asset(
-                          'assets/job_logo.png',
-                          width: 50,
-                          height: 50,
+                        return Icon(
+                          Icons.location_city,
+                          size: 50,
+                          color: Colors.grey.shade400,
                         );
                       },
                     ),

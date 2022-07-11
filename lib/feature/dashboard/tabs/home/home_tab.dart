@@ -32,7 +32,7 @@ class HomeTab extends StatelessWidget {
                         (job) => JobCard(
                           job: job,
                           onClick: () {
-                            Get.toNamed('/job/details');
+                            Get.toNamed('/job/details', arguments: {'job': job});
                           },
                         ),
                       )

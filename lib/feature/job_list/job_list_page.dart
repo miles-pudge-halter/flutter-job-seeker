@@ -40,14 +40,18 @@ class JobListPage extends StatelessWidget {
                       borderColor: Colors.grey.shade400,
                     ),
                     const SizedBox(width: 16),
-                    (keyword != null) ? Text(
-                      'Jobs for $keyword',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ): SizedBox(width: 0),
-                    (country != null) ? Text(
-                      'Jobs in $country',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ): SizedBox(width: 0),
+                    (keyword != null)
+                        ? Text(
+                            'Jobs for $keyword',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          )
+                        : SizedBox(width: 0),
+                    (country != null)
+                        ? Text(
+                            'Jobs in $country',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          )
+                        : SizedBox(width: 0),
                   ],
                 ),
               ),
@@ -60,7 +64,15 @@ class JobListPage extends StatelessWidget {
                     return ListView(
                         children: (controller.state as JobListSuccess)
                             .jobs
-                            .map((job) => JobCard(job: job, onClick: () {}))
+                            .map(
+                              (job) => JobCard(
+                                job: job,
+                                onClick: () {
+                                  Get.toNamed('/job/details',
+                                      arguments: {'job': job});
+                                },
+                              ),
+                            )
                             .toList());
                   } else if (controller.state is JobListLoading) {
                     return const Center(
