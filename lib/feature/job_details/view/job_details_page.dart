@@ -82,8 +82,9 @@ class JobDetailsPage extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 4),
+                      SizedBox(height: 8),
                       Text(
                         job.companyName,
                         style: TextStyle(

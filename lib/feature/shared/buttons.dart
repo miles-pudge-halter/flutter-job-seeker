@@ -29,12 +29,44 @@ class NFQPrimaryButton extends StatelessWidget {
   }
 }
 
-class NFQIconButton extends StatelessWidget {
+class NFQSecondaryButton extends StatelessWidget {
+  final String title;
+  final void Function() onClick;
 
+  NFQSecondaryButton(this.title, this.onClick);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onClick,
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(0),
+        backgroundColor: MaterialStateProperty.all(Colors.white),
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
+        shape: MaterialStateProperty.all(
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
+        ),
+      ),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+          color: Colors.black54,
+        ),
+      ),
+    );
+  }
+}
+
+class NFQIconButton extends StatelessWidget {
   final IconData icon;
   final void Function() onClick;
 
-  const NFQIconButton({required this.icon, required this.onClick, Key? key}) : super(key: key);
+  const NFQIconButton({required this.icon, required this.onClick, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

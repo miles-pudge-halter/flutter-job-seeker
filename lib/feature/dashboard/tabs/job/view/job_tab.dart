@@ -27,7 +27,7 @@ class _JobTabState extends State<JobTab> {
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    zoom: 5,
   );
 
   CameraPosition? currentLocation = null;
@@ -63,7 +63,7 @@ class _JobTabState extends State<JobTab> {
     var location = await Geolocator.getCurrentPosition();
     currentLocation = CameraPosition(
       target: LatLng(location.latitude, location.longitude),
-      zoom: 15,
+      zoom: 10,
     );
 
     final GoogleMapController controller = await _controller.future;
@@ -148,7 +148,8 @@ class _JobTabState extends State<JobTab> {
                 height: 60,
                 width: double.infinity,
                 child: NFQPrimaryButton('Search by location', () {
-                  Get.toNamed('/job/list', arguments: {'country': address, 'keyword': null});
+                  Get.toNamed('/job/list',
+                      arguments: {'country': address, 'keyword': null});
                 }),
               ),
             ],
@@ -163,26 +164,21 @@ class _JobTabState extends State<JobTab> {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Colors.grey.shade300,
+        color: Colors.grey.shade200,
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Expanded(
-              flex: 1,
-              child: Icon(
-                Icons.location_pin,
-                size: 30,
-              ),
+            const Icon(
+              Icons.location_pin,
+              size: 25,
             ),
-            Expanded(
-              flex: 5,
-              child: Text(
-                address,
-                textAlign: TextAlign.center,
-              ),
+            SizedBox(width: 10),
+            Text(
+              address,
+              textAlign: TextAlign.center,
             ),
           ],
         ),
