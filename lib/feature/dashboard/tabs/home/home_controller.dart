@@ -8,7 +8,12 @@ class HomeController extends GetxController {
   JobRepository repository = Get.find();
   final _stateStream = const HomeState().obs;
 
+  final _filterValue = ''.obs;
+  String get filterValue => _filterValue.value;
+
   HomeState get state => _stateStream.value;
+
+  final heroItem = Rxn<JobModel>();
 
   @override
   void onInit() {
@@ -16,14 +21,20 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  void changeFilterValue(String value) {
+    _filterValue.value = value;
+    fetchJobs();
+  }
+
   void fetchJobs() async {
     try {
       _stateStream.value = HomeLoading();
-      var jobs = await repository.getJobs();
+      var jobs = await repository.getJobs(employmentType: filterValue);
       if (jobs.isEmpty) {
         _stateStream.value = HomeEmpty();
       } else {
-        _stateStream.value = HomeSuccess(jobs: jobs);
+        heroItem.value = jobs.first;
+        _stateStream.value = HomeSuccess(jobs: jobs..removeAt(0));
       }
     } catch (e) {
       _stateStream.value = HomeFailure(error: e.toString());

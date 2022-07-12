@@ -166,7 +166,7 @@ class ProfileTab extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: const BorderRadius.all(Radius.circular(16)),
-        color: Colors.grey.shade300,
+        color: Colors.grey.shade200,
       ),
       child: InkWell(
         onTap: onClick,
