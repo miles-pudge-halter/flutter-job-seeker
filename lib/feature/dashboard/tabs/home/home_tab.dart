@@ -50,6 +50,7 @@ class HomeTab extends StatelessWidget {
               ),
             );
           }),
+          SizedBox(height: 10),
           Obx(() {
             if (controller.heroItem.value != null && controller.state is! HomeLoading) {
               return Padding(

@@ -3,19 +3,25 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_seeker/Constants.dart';
+import 'package:job_seeker/data/models/job_model.dart';
+import 'package:job_seeker/feature/apply_job/apply_job_controller.dart';
+import 'package:job_seeker/feature/apply_job/apply_job_state.dart';
 import 'package:job_seeker/feature/shared/form_inputs.dart';
 
-import '../../shared/buttons.dart';
+import '../shared/buttons.dart';
 
 class ApplyJobPage extends StatelessWidget {
-  const ApplyJobPage({Key? key}) : super(key: key);
+  ApplyJobPage({Key? key}) : super(key: key);
 
   void _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
   }
 
+  final ApplyJobController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    JobModel job = Get.arguments['job'];
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -24,7 +30,10 @@ class ApplyJobPage extends StatelessWidget {
             SizedBox(
               height: 90,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -55,14 +64,14 @@ class ApplyJobPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       _buildCVUploadLayout(),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Set your salary range',
                         style: Theme.of(context).textTheme.subtitle1,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(
@@ -73,19 +82,19 @@ class ApplyJobPage extends StatelessWidget {
                               inputType: TextInputType.number,
                             ),
                           ),
-                          SizedBox(width: 20),
-                          Expanded(
+                          const SizedBox(width: 20),
+                          const Expanded(
                             flex: 1,
                             child: Text('USD/Month'),
                           ),
                         ],
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Additional Information',
                         style: Theme.of(context).textTheme.subtitle1,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       NFQTextField(
                         '',
                         height: 150,
@@ -101,13 +110,26 @@ class ApplyJobPage extends StatelessWidget {
               width: double.infinity,
               height: 80,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Container(
-                  height: 40,
-                  width: double.infinity,
-                  child: NFQPrimaryButton('Send Application', () {
-                  },),
-                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Obx(() {
+                  if (controller.state is ApplyJobLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return SizedBox(
+                      height: 40,
+                      width: double.infinity,
+                      child: NFQPrimaryButton(
+                        'Send Application',
+                        () {
+                          controller.applyJob(job);
+                        },
+                      ),
+                    );
+                  }
+                }),
               ),
             ),
           ],

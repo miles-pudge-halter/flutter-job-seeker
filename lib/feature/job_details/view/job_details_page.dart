@@ -115,7 +115,9 @@ class JobDetailsPage extends StatelessWidget {
                         child: NFQPrimaryButton(
                           'Apply This Job',
                           () {
-                            Get.toNamed('/job/apply');
+                            Get.toNamed('/job/apply', arguments: {
+                              'job': job,
+                            });
                           },
                         ),
                       ),
