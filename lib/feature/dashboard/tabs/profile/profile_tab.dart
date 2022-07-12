@@ -141,7 +141,9 @@ class ProfileTab extends StatelessWidget {
       children: [
         Text('Settings', style: Theme.of(context).textTheme.headline3),
         const SizedBox(height: 20),
-        _buildMenuItem('Applied Jobs', () {}),
+        _buildMenuItem('Applied Jobs', () {
+          Get.toNamed('/job/applied');
+        }),
         const SizedBox(height: 10),
         _buildMenuItem('Edit your profile', () {}),
         const SizedBox(height: 10),

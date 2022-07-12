@@ -22,20 +22,30 @@ JobModel _$JobModelFromJson(Map<String, dynamic> json) => JobModel(
       source: json['source'] as String?,
     );
 
-Map<String, dynamic> _$JobModelToJson(JobModel instance) => <String, dynamic>{
-      'id': instance.id,
-      'role': instance.role,
-      'company_name': instance.companyName,
-      'company_num_employees': instance.numberOfEmployees,
-      'employment_type': instance.employmentType,
-      'remote': instance.remote,
-      'logo': instance.logo,
-      'url': instance.url,
-      'text': instance.text,
-      'date_posted': instance.datePosted,
-      'keywords': instance.keywords,
-      'source': instance.source,
-    };
+Map<String, dynamic> _$JobModelToJson(JobModel instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'role': instance.role,
+    'company_name': instance.companyName,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('company_num_employees', instance.numberOfEmployees);
+  writeNotNull('employment_type', instance.employmentType);
+  val['remote'] = instance.remote;
+  writeNotNull('logo', instance.logo);
+  writeNotNull('url', instance.url);
+  writeNotNull('text', instance.text);
+  val['date_posted'] = instance.datePosted;
+  val['keywords'] = instance.keywords;
+  writeNotNull('source', instance.source);
+  return val;
+}
 
 JobListResponse _$JobListResponseFromJson(Map<String, dynamic> json) =>
     JobListResponse(
@@ -47,10 +57,19 @@ JobListResponse _$JobListResponseFromJson(Map<String, dynamic> json) =>
       previous: json['previous'] as String?,
     );
 
-Map<String, dynamic> _$JobListResponseToJson(JobListResponse instance) =>
-    <String, dynamic>{
-      'count': instance.count,
-      'next': instance.next,
-      'previous': instance.previous,
-      'results': instance.results,
-    };
+Map<String, dynamic> _$JobListResponseToJson(JobListResponse instance) {
+  final val = <String, dynamic>{
+    'count': instance.count,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('next', instance.next);
+  writeNotNull('previous', instance.previous);
+  val['results'] = instance.results;
+  return val;
+}
