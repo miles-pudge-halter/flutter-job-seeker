@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:job_seeker/Constants.dart';
+import 'package:job_seeker/feature/applied_jobs/applied_jobs_binding.dart';
+import 'package:job_seeker/feature/applied_jobs/applied_jobs_page.dart';
 import 'package:job_seeker/feature/apply_job/apply_job_binding.dart';
 import 'package:job_seeker/feature/apply_job/apply_job_page.dart';
 import 'package:job_seeker/feature/dashboard/binding/dashboard_binding.dart';
@@ -109,6 +111,11 @@ class MyApp extends StatelessWidget {
           name: '/job/apply',
           page: () => ApplyJobPage(),
           binding: ApplyJobBinding(),
+        ),
+        GetPage(
+          name: '/job/applied',
+          page: () => AppliedJobsPage(),
+          binding: AppliedJobsBinding(),
         )
       ],
       initialRoute: '/splash',

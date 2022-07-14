@@ -17,6 +17,30 @@ class JobRepository {
     return response.results;
   }
 
+  Future<List<JobModel>> fetchAppliedJobs() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      FirebaseDatabase database = FirebaseDatabase.instance;
+      var ref = database.ref('users/${currentUser.uid}/jobs');
+
+      List<JobModel> jobs = [];
+
+      final snapshot = await ref.get();
+      if (snapshot.exists) {
+        final list = snapshot.value as List<dynamic>;
+        for (var element in list) {
+          print(element);
+          if (element != null) {
+            jobs.add(JobModel.fromJson(Map<String, dynamic>.from(element)));
+          }
+        }
+      }
+      return jobs;
+    } else {
+      return Future.error('User session not found');
+    }
+  }
+
   Future<dynamic> applyJob(JobModel job) async {
     var currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null) {
@@ -40,6 +64,8 @@ class JobRepository {
       }
       await ref.set(jobs);
       return Future.value(true);
+    } else {
+      return Future.error('User session not found');
     }
   }
 }
